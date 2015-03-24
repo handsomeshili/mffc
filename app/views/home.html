@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>home</title>
+  </head>
+  <body>
+    <?php foreach ($article as $key => $value): ?>
+      <h1><?php echo $value['title'] ?></h1> <br />
+      <p><?php echo $value['content'] ?></p> <br />
+    <?php endforeach ?>
+  </body>
+</html> 
