@@ -40,9 +40,16 @@ Macaw::get('/(:all)', function($request_name) {
 
     } elseif ($request_len === 2) {
         //
+        $module = 'Index';
+        $controller = $route[0];
+        $action = $route[1];
         Application::RouteDispatch($module, $controller, $action);
     } elseif ($request_len === 1) {
         //
+        $module = 'Index';
+        $controller = 'Home';
+        $action = $route[0];
+        Application::RouteDispatch($module, $controller, $action);
     } else {
         //
   }

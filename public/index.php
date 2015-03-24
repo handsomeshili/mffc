@@ -8,7 +8,7 @@
 define('ROOT_PATH', realpath(dirname(__FILE__) . '/../'));
 define('APPLICATION_PATH', ROOT_PATH . '/app/');
 
-require '../Application.php';
+require '../TinyPHP/Application.php';
 $app = new Application();
 $app->initlize();
 

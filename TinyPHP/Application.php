@@ -40,7 +40,7 @@ class Application {
         $capsule = new Capsule;
 
         //读取配置文件
-        $capsule->addConnection(require 'config/database.php');
+        $capsule->addConnection(require '../config/database.php');
         //Setup the Eloquent ORM... (optional; unless you've used setEventDispatcher())
         $capsule->bootEloquent();
 
@@ -61,7 +61,7 @@ class Application {
          * 用户自定义配置文件
          * 
          */
-        require "bootstrap.php";
+        require "../bootstrap.php";
 
         //import router config file
         require '../config/routes.php';
@@ -79,7 +79,7 @@ class Application {
     }
 
     /**
-     * Method RouteDispatch
+     * Method RouteDispatche
      * 路由分发
      * @param string $module
      * @param string $controller
@@ -91,6 +91,12 @@ class Application {
     public static function RouteDispatch($module = 'Index', $controller = 'Home', $action = 'home', $param = array()) {
         echo 'module: ' . $module . ' controller: ' . $controller . ' action: ' . $action . '<br />';
         echo 'route dispatche from here'; 
+
+        //instanitate controller
+        $controller = $controller . 'Controller';
+        $con = new $controller();
+        //call action method
+        $con->$action();
     }
 
 }
