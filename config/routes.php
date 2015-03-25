@@ -9,20 +9,8 @@
 
 use NoahBuscher\Macaw\Macaw;
 
-// Macaw::get('/', function() {
-//     echo "hello /";
-// });
-
-// Macaw::get('/macaw', function() {
-//     echo "hello macaw" . '<br />';
-// });
-
-
-
-// Macaw::get('/home', 'HomeController@home');
 
 Macaw::get('/(:all)', function($request_name) {
-    echo 'The slug is: ' . $request_name. '<br/>';
 
     //从uri中获取module、controller、action
     $request_name = trim($request_name);
@@ -62,7 +50,7 @@ Macaw::get('/(:all)', function($request_name) {
 
 });
 
-//use 404 page as the not found tips
+// //use 404 page as the not found tips
 // Macaw::$error_callback = function() {
 //     throw new Exception("路由无匹配项 404 Not Found");
 // };

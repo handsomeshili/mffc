@@ -46,9 +46,7 @@ class Application {
 
         /** 
          * whoops 错误提示包支持
-         *
          * 
-         *
          */
         $whoops = new \Whoops\Run;
         $whoops->pushHandler(new \Whoops\Handler\PrettyPageHandler);
