@@ -77,15 +77,17 @@ class Application {
 
         $con_ini = Application::readConf();
         // var_dump($con_ini);die;
-        foreach ($con_ini as $app_mo) {
+        // foreach ($con_ini as $app_mo) {
+        //     # code...
+        $app_mo = $con_ini['application.modules'];
+        foreach ($app_mo as $mo_na) {
             # code...
-            foreach ($app_mo as $mo_na) {
-                # code...
-                $module_name = $mo_na;
-                $composer_autoload->add("classmap", MODULES_PATH . '/' . $module_name . '/controllers');
-            }
-
+            $module_name = $mo_na;
+            $composer_autoload->add("classmap", MODULES_PATH . '/' . $module_name . '/controllers');
         }
+
+        // }
+
 
 
         echo '<br />' . 'initlized' . '<br/>';
