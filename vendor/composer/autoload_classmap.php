@@ -9,6 +9,7 @@ return array(
     'Article' => $baseDir . '/app/models/Article.php',
     'BaseController' => $baseDir . '/TinyPHP/controller/BaseController.php',
     'BaseModel' => $baseDir . '/TinyPHP/model/BaseModel.php',
+    'BrandController' => $baseDir . '/app/modules/Brand/controllers/BrandController.php',
     'HomeController' => $baseDir . '/app/controllers/HomeController.php',
     'UserController' => $baseDir . '/app/modules/User/controllers/UserController.php',
     'View' => $baseDir . '/TinyPHP/service/View.php',

@@ -23,9 +23,7 @@ class Application {
 
     public function __construct() {
         //codes.......
-        echo "application initlized success<br />";
         
-
         //import autoload file
         require '../vendor/autoload.php';
 
@@ -78,11 +76,31 @@ class Application {
         
         //添加app/modules里面的更多模块
         $composer_autoload = require '../vendor/autoload.php';
-        $module_name = 'User';
-        $composer_autoload->add("classmap", MODULES_PATH . '/' . $module_name . '/controllers');
+
+        $con_ini = Application::readConf();
+        // var_dump($con_ini);die;
+        foreach ($con_ini as $app_mo) {
+            # code...
+            foreach ($app_mo as $mo_na) {
+                # code...
+                $module_name = $mo_na;
+                $composer_autoload->add("classmap", MODULES_PATH . '/' . $module_name . '/controllers');
+            }
+
+        }
 
 
         echo '<br />' . 'initlized' . '<br/>';
+    }
+
+    /**
+     * Method readConf()
+     * 读取配置文件
+     *
+     */
+    public static function readConf() {
+        $config = parse_ini_file(CONFIG_PATH . '/application.ini');
+        return $config;
     }
 
     /**
@@ -99,7 +117,7 @@ class Application {
         echo 'module: ' . $module . ' controller: ' . $controller . ' action: ' . $action . '<br />';
         echo 'params : ';
         var_dump($param);
-        echo 'route dispatche from here'; 
+        echo '<br />route dispatche from here<br />'; 
 
         $base_controller = new BaseController($module, $controller, $param);
         // var_dump($base_controller->getModuleName());

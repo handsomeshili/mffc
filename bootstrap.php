@@ -6,7 +6,8 @@
  */
 
 
-define('MODULES_PATH', APPLICATION_PATH . '/modules');
+
+
 
 
 
