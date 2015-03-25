@@ -8,9 +8,12 @@
 
     "autoload": {
         "classmap": [
+            "TinyPHP/controller",
+            "TinyPHP/model",
+            "TinyPHP/service",
             "app/controllers",
             "app/models",
-            "services"
+            "app/modules"
         ]
     }
 }

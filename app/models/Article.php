@@ -6,10 +6,11 @@
  * 
  * @author sily
  */
-// use Illuminate\Database\Capsule\Manager as Capsule; 
-class Article extends  Illuminate\Database\Eloquent\Model{
+
+
+class Article extends  BaseModel{
     protected $table = 'article';
-    public $timestamps = false;
+
     // public static function first() {
     //     $connection = mysql_connect('localhost', 'root', '1234');
     //     if (!$connection) {

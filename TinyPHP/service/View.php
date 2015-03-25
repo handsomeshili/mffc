@@ -37,6 +37,8 @@ class View
 
   private static function getFilePath($viewName)
   {
+
+    //考虑多模块的时候这里需要修改
     $filePath = str_replace('.', '/', $viewName);
     return APPLICATION_PATH.self::VIEW_BASE_PATH.$filePath.'.html';
   }

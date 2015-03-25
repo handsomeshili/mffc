@@ -75,6 +75,13 @@ class Application {
      * @author sily
      */
     public static function initlize() {
+        
+        //添加app/modules里面的更多模块
+        $composer_autoload = require '../vendor/autoload.php';
+        $module_name = 'User';
+        $composer_autoload->add("classmap", MODULES_PATH . '/' . $module_name . '/controllers');
+
+
         echo '<br />' . 'initlized' . '<br/>';
     }
 
@@ -90,8 +97,13 @@ class Application {
      */
     public static function RouteDispatch($module = 'Index', $controller = 'Home', $action = 'home', $param = array()) {
         echo 'module: ' . $module . ' controller: ' . $controller . ' action: ' . $action . '<br />';
+        echo 'params : ';
+        var_dump($param);
         echo 'route dispatche from here'; 
 
+        $base_controller = new BaseController($module, $controller, $param);
+        // var_dump($base_controller->getModuleName());
+        // $_GET['param'] = $param;
         //instanitate controller
         $controller = $controller . 'Controller';
         $con = new $controller();

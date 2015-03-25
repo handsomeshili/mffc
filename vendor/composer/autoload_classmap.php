@@ -7,9 +7,11 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'Article' => $baseDir . '/app/models/Article.php',
-    'BaseController' => $baseDir . '/app/controllers/BaseController.php',
+    'BaseController' => $baseDir . '/TinyPHP/controller/BaseController.php',
+    'BaseModel' => $baseDir . '/TinyPHP/model/BaseModel.php',
     'HomeController' => $baseDir . '/app/controllers/HomeController.php',
-    'View' => $baseDir . '/services/View.php',
+    'UserController' => $baseDir . '/app/modules/User/controllers/UserController.php',
+    'View' => $baseDir . '/TinyPHP/service/View.php',
     'Whoops\\Module' => $vendorDir . '/filp/whoops/src/deprecated/Zend/Module.php',
     'Whoops\\Provider\\Zend\\ExceptionStrategy' => $vendorDir . '/filp/whoops/src/deprecated/Zend/ExceptionStrategy.php',
     'Whoops\\Provider\\Zend\\RouteNotFoundStrategy' => $vendorDir . '/filp/whoops/src/deprecated/Zend/RouteNotFoundStrategy.php',
