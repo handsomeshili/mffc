@@ -10,6 +10,7 @@ class HomeController extends BaseController {
     public function index() {
         // $action = $this->getActionName();
         // echo $action;
+        $this->redirect('home');
     }
 
     public function home() {
