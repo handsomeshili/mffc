@@ -8,8 +8,8 @@
 class HomeController extends BaseController {
 
     public function index() {
-        // $action = $this->getActionName();
-        // echo $action;
+        $module_name = $this->getModule();
+        var_dump($module_name);die;
         $this->redirect('home');
     }
 

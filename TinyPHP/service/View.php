@@ -4,7 +4,7 @@
 */
 class View
 {
-  const VIEW_BASE_PATH = '/views/';
+  const VIEW_BASE_PATH =  'views/';
 
   public $view;
   public $data;
@@ -21,6 +21,7 @@ class View
     } else {
       
       $viewFilePath = self::getFilePath($viewName);
+
       if ( is_file($viewFilePath) ) {
         return new View($viewFilePath);
       } else {
@@ -38,9 +39,20 @@ class View
   private static function getFilePath($viewName)
   {
 
-    //考虑多模块的时候这里需要修改
+    //考虑多模块的时候这里需要修改----done
+    $module_name = BaseController::$_module;
+
     $filePath = str_replace('.', '/', $viewName);
-    return APPLICATION_PATH.self::VIEW_BASE_PATH.$filePath.'.html';
+
+    if ($module_name == 'Index') {
+        //默认的mudule下
+        $view_path = APPLICATION_PATH.self::VIEW_BASE_PATH.$filePath.'.html';
+    } else {
+        //非默认的mudule下
+        $view_path = APPLICATION_PATH . 'modules/' . $module_name . '/' . self::VIEW_BASE_PATH.$filePath.'.html';
+    }
+    // var_dump($view_path);die;
+    return $view_path;
   }
 
   public function __call($method, $parameters)

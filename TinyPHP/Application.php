@@ -117,6 +117,7 @@ class Application {
         var_dump($param);
         echo '<br />route dispatche from here<br />'; 
 
+        BaseController::$_module = $module;
         //$module, $controller, $action, $param
         // $base_controller = new BaseController();
         // $base_controller->setModuleName($module);

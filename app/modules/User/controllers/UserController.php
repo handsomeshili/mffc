@@ -13,7 +13,7 @@ class UserController extends BaseController {
      * @author sily
      */
     public function index() {
-        echo 'user->index()';
+        $this->view = $this->getView('User')->with('user','sily');
     }
 }
 
