@@ -30,8 +30,6 @@ class Application {
 
         /**
          * Eloqent ROM 包支持
-         *
-         *
          * Eloqent ROM  git adress: https://github.com/illuminate/database
          * 
          */
@@ -113,13 +111,17 @@ class Application {
      *
      * @author sily
      */
-    public static function RouteDispatch($module = 'Index', $controller = 'Home', $action = 'home', $param = array()) {
+    public static function RouteDispatch($module = '', $controller = '', $action = '', $param = array()) {
         echo 'module: ' . $module . ' controller: ' . $controller . ' action: ' . $action . '<br />';
         echo 'params : ';
         var_dump($param);
         echo '<br />route dispatche from here<br />'; 
 
-        $base_controller = new BaseController($module, $controller, $param);
+        //$module, $controller, $action, $param
+        // $base_controller = new BaseController();
+        // $base_controller->setModuleName($module);
+        // $base_controller->setControllerName($controller);
+        // $base_controller->setActionName($action);
         // var_dump($base_controller->getModuleName());
         // $_GET['param'] = $param;
         //instanitate controller

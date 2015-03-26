@@ -11,63 +11,17 @@ class BaseController {
 
     protected $view;
 
-    protected $_module;
 
-    protected $_controller;
-
-    protected $_action;
-
-    protected $_param;
-
-
-    public function __construct($module = 'Index', $controller = 'Home', $action = 'home', $param = array()) {
-        //构造函数
-        if ($module === null || $controller === null || $action === null) {
-            die('invalide module or controller or action');
-        }
-
-        $this->_module = $module;
-        $this->_controller = $controller;
-        $this->_action = $action;
-        $this->_param = $param;
+    public function __construct() {
     }
 
-    /**
-     * Method getModuleName
-     * 获取模型名称
-     *
-     * @return string $this->_modle
-     * @author sily
-     */
-    public function getModuleName() {
-        return $this->_module;
+    //获取视图类实例
+    public function getView($action_name) {
+        return View::make($action_name);
     }
-
-    /**
-     * Method getControllerName
-     * 获取控制器名称
-     *
-     * @return string $this->_controller
-     * @author sily
-     */
-    public function getControllerName() {
-        return $this->_controller;
-    }
-
-    /**
-     * Mtehod getActionName
-     * 获取动作名称
-     *
-     * @return $this->_action
-     * @author sily
-     */
-    public function getActionName() {
-        return $this->_action;
-    }
-
-
-
-
+    //function : display(string $action_name) 
+    //function : redirect(string $url)
+    //
 
     public function __destruct(){
         $view = $this->view;
