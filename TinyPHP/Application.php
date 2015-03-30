@@ -60,7 +60,7 @@ class Application {
         //加载公共函数库文件
         require "functions/Common.php";
 
-        
+
         //import router config file
         require '../config/routes.php';
 
@@ -116,6 +116,11 @@ class Application {
      * @author sily
      */
     public static function RouteDispatch($module = '', $controller = '', $action = '', $param = array()) {
+
+        //ucword
+        $module = ucfirst(strtolower($module));
+        $controller = ucfirst(strtolower($controller));
+
         echo 'module: ' . $module . ' controller: ' . $controller . ' action: ' . $action . '<br />';
         echo 'params : ';
         var_dump($param);

@@ -18,6 +18,7 @@ Macaw::get('/(:all)', function($request_name) {
 
     $request_len = count($route);
 
+    $param = array();
     if ($request_len >= 3) {
         //URL中获取module controller action  param
         $module = $route[0];
