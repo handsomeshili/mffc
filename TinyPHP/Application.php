@@ -57,6 +57,10 @@ class Application {
          */
         require "../bootstrap.php";
 
+        //加载公共函数库文件
+        require "functions/Common.php";
+
+        
         //import router config file
         require '../config/routes.php';
 

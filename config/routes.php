@@ -46,7 +46,7 @@ Macaw::get('/(:all)', function($request_name) {
         $action = 'home';
   }
   //调用Application的分发函数
-  Application::RouteDispatch($module, $controller, $action);
+  Application::RouteDispatch($module, $controller, $action,$param);
 
 });
 

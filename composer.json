@@ -11,6 +11,7 @@
             "TinyPHP/controller",
             "TinyPHP/model",
             "TinyPHP/service",
+            "TinyPHP/functions",
             "app/controllers",
             "app/models",
             "app/modules"

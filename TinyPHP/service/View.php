@@ -1,7 +1,9 @@
 <?php
 /**
-* \View
-*/
+ * View
+ */
+
+
 class View
 {
   const VIEW_BASE_PATH =  'views/';

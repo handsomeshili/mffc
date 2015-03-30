@@ -8,6 +8,9 @@
 class HomeController extends BaseController {
 
     public function index() {
+        check();
+        BaseRedis::set('name', 'sily', 1, 'm');
+        echo BaseRedis::get('name');die;
         $module_name = $this->getModule();
         var_dump($module_name);die;
         $this->redirect('home');
