@@ -7,7 +7,13 @@
 
 class HomeController extends BaseController {
 
+    public function init() {
+        //load models
+        $this->loadmodel('Article');    
+    }
+
     public function index() {
+        $this->init();
         $redis = BaseRedis::getInstance();
         $redis->set('name', 'append2');
         dump($redis->get('name'));

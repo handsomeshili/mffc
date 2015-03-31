@@ -55,14 +55,14 @@ class Application {
          * 用户自定义配置文件
          * 
          */
-        require "../bootstrap.php";
+        require CONFIG_PATH . "/bootstrap.php";
 
         //加载公共函数库文件
-        require "functions/Common.php";
+        require "library/functions/Common.php";
 
 
         //import router config file
-        require '../config/routes.php';
+        require CONFIG_PATH . '/routes.php';
 
     }
 
@@ -74,19 +74,19 @@ class Application {
      */
     public static function initlize() {
         
-        //添加app/modules里面的更多模块
-        $composer_autoload = require '../vendor/autoload.php';
+        // //添加app/modules里面的更多模块
+        // $composer_autoload = require '../vendor/autoload.php';
 
-        $con_ini = Application::readConf();
-        // var_dump($con_ini);die;
-        // foreach ($con_ini as $app_mo) {
+        // $con_ini = Application::readConf();
+        // // var_dump($con_ini);die;
+        // // foreach ($con_ini as $app_mo) {
+        // //     # code...
+        // $app_mo = $con_ini['application.modules'];
+        // foreach ($app_mo as $mo_na) {
         //     # code...
-        $app_mo = $con_ini['application.modules'];
-        foreach ($app_mo as $mo_na) {
-            # code...
-            $module_name = $mo_na;
-            $composer_autoload->add("classmap", MODULES_PATH . '/' . $module_name . '/controllers');
-        }
+        //     $module_name = $mo_na;
+        //     $composer_autoload->add("classmap", MODULES_PATH . '/' . $module_name . '/controllers');
+        // }
 
         // }
 
@@ -95,15 +95,15 @@ class Application {
         echo '<br />' . 'initlized' . '<br/>';
     }
 
-    /**
-     * Method readConf()
-     * 读取配置文件
-     *
-     */
-    public static function readConf() {
-        $config = parse_ini_file(CONFIG_PATH . '/application.ini');
-        return $config;
-    }
+    // /**
+    //  * Method readConf()
+    //  * 读取配置文件
+    //  *
+    //  */
+    // public static function readConf() {
+    //     $config = parse_ini_file(CONFIG_PATH . '/application.ini');
+    //     return $config;
+    // }
 
     /**
      * Method RouteDispatche
