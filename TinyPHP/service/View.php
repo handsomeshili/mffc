@@ -42,8 +42,8 @@ class View
   {
 
     //考虑多模块的时候这里需要修改----done
-    $module_name = BaseController::$_module;
-
+    $module_name = BaseController::getModule();
+    
     $filePath = str_replace('.', '/', $viewName);
 
     if ($module_name == 'Index') {
