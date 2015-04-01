@@ -47,14 +47,14 @@ Macaw::get('/(:all)', function($request_name) {
         $action = 'home';
   }
   //调用Application的分发函数
-  Application::RouteDispatch($module, $controller, $action,$param);
+  Application::RouteDispatch($module, $controller, $action,$param); 
 
 });
 
-// //use 404 page as the not found tips
-// Macaw::$error_callback = function() {
-//     throw new Exception("路由无匹配项 404 Not Found");
-// };
+//use 404 page as the not found tips
+Macaw::$error_callback = function() {
+    throw new Exception("路由无匹配项 404 Not Found");
+};
 
 Macaw::dispatch();
 ?>

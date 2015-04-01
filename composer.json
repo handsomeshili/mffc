@@ -13,7 +13,6 @@
             "TinyPHP/library/functions",
             "TinyPHP/service",
             "app/controllers",
-            "app/models",
             "app/modules"
         ]
     }

@@ -67,43 +67,37 @@ class Application {
     }
 
     /**
+     * Method readConf()
+     * 读取配置文件
+     *
+     */
+    protected static function readConf() {
+        $config = parse_ini_file(CONFIG_PATH . '/application.ini');
+        return $config;
+    }
+
+
+    /**
      * Method initlize
      * 框架初始化操作
      *
      * @author sily
      */
     public static function initlize() {
-        
-        // //添加app/modules里面的更多模块
-        // $composer_autoload = require '../vendor/autoload.php';
 
-        // $con_ini = Application::readConf();
-        // // var_dump($con_ini);die;
-        // // foreach ($con_ini as $app_mo) {
-        // //     # code...
-        // $app_mo = $con_ini['application.modules'];
-        // foreach ($app_mo as $mo_na) {
-        //     # code...
-        //     $module_name = $mo_na;
-        //     $composer_autoload->add("classmap", MODULES_PATH . '/' . $module_name . '/controllers');
-        // }
+        //添加app/modules里面的更多模块
+        $composer_autoload = require ROOT_PATH . '/vendor/autoload.php';
 
-        // }
-
-
+        $con_ini = self::readConf();
+        $app_mo = $con_ini['application.modules'];
+        foreach ($app_mo as $mo_na) {
+            $module_name = $mo_na;
+            $composer_autoload->add("classmap", MODULES_PATH . '/' . $module_name . '/controllers');
+        }
 
         echo '<br />' . 'initlized' . '<br/>';
     }
 
-    // /**
-    //  * Method readConf()
-    //  * 读取配置文件
-    //  *
-    //  */
-    // public static function readConf() {
-    //     $config = parse_ini_file(CONFIG_PATH . '/application.ini');
-    //     return $config;
-    // }
 
     /**
      * Method RouteDispatche
@@ -128,14 +122,6 @@ class Application {
 
         // BaseController::$_module = $module;
         BaseController::setModule($module);
-        //$module, $controller, $action, $param
-        // $base_controller = new BaseController();
-        // $base_controller->setModuleName($module);
-        // $base_controller->setControllerName($controller);
-        // $base_controller->setActionName($action);
-        // var_dump($base_controller->getModuleName());
-        // $_GET['param'] = $param;
-        //instanitate controller
         $controller = $controller . 'Controller';
         $con = new $controller();
         //call action method

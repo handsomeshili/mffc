@@ -9,7 +9,8 @@ class HomeController extends BaseController {
 
     public function init() {
         //load models
-        $this->loadmodel('Article');    
+        $this->loadModelByName('Article');
+        $this->loadServiceByName('UserService');
     }
 
     public function index() {
@@ -26,6 +27,9 @@ class HomeController extends BaseController {
     }
 
     public function home() {
+        $this->init();
+        // $service = new UserService();
+        // $service->index();die;
         // echo 'Homecontroller initlized success!';
         $article = Article::get();
         $all = Article::all();

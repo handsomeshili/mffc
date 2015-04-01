@@ -17,26 +17,30 @@ class BaseController {
     }
 
 
-    /**
-     * Method readConf()
-     * 读取配置文件
-     *
-     */
-    protected static function readConf() {
-        $config = parse_ini_file(CONFIG_PATH . '/application.ini');
-        return $config;
-    }
 
-    protected function loadmodel($model_name) {
-        //添加app/modules里面的更多模块
+
+    /**
+     * Method loadServiceByName()
+     * 根据路径加载一个类
+     * @param string $service_name
+     * 
+     */
+    protected function loadServiceByName($service_name) {
         $composer_autoload = require ROOT_PATH . '/vendor/autoload.php';
 
-        $con_ini = self::readConf();
-        $app_mo = $con_ini['application.modules'];
-        foreach ($app_mo as $mo_na) {
-            $module_name = $mo_na;
-            $composer_autoload->add("classmap", MODULES_PATH . '/' . $module_name . '/controllers');
+        $file = APPLICATION_PATH . '/services/' . $service_name . '.php';
+        if (!file_exists($file)) {
+            throw Exception('aquired file not exitsts');
         }
+        $composer_autoload->add('files', $file);
+    }
+
+
+
+    protected function loadModelByName($model_name) {
+        //添加app/modules里面的更多模块
+        $composer_autoload = require ROOT_PATH . '/vendor/autoload.php';
+        var_dump($composer_autoload->add("files", APPLICATION_PATH . '/models/' . $model_name . '.php'));
     }
 
     public static function setModule($module) {

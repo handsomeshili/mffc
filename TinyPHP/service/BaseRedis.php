@@ -15,7 +15,7 @@ class BaseRedis {
         // self::$redis = new Client(require ROOT_PATN . self::CONFIG_FILE);
         self::$redis = new Redis();
         $config = require CONFIG_PATH . self::CONFIG_FILE;
-        self::$redis->connect($config['host'], $config['port']) or die('can not connect to redis server');
+        self::$redis->pconnect($config['host'], $config['port']) or die('can not connect to redis server');
     }
 
 
@@ -23,6 +23,44 @@ class BaseRedis {
         self::init();
         return self::$redis;
     }
+
+
+    /**
+     * Method setOption()
+     * @param string $op_name   Option name
+     * @param string $op_value  Option value
+     * @return bool
+     */
+    public function setOption($op_name, $op_value) {
+        // $redis->setOption(Redis::OPT_SERIALIZER, Redis::SERIALIZER_NONE);   // don't serialize data
+        // $redis->setOption(Redis::OPT_SERIALIZER, Redis::SERIALIZER_PHP);    // use built-in serialize/unserialize
+        // $redis->setOption(Redis::OPT_SERIALIZER, Redis::SERIALIZER_IGBINARY);   // use igBinary serialize/unserialize
+        return self::$redis->setOption($name, $value);
+    }
+
+    /**
+     * Method getoption()
+     * Get client option.
+     * @param string $op_name
+     * @return string op_value
+     */
+    public function getOption($op_name) {
+        return self::$redis->getOption($op_name);
+    }
+
+    /**
+     * Method ping
+     * Check the current connection status
+     * @return string  +PONG on success. Throws a RedisException object on connectivity error
+     */
+    public function ping() {
+        return self::$redis->ping();
+    }
+
+    public function server_info() {
+        return self::$redis->info();
+    }
+
 
     public static function set($key, $value, $time = null, $unit = null) {
         if ($time) {
@@ -127,7 +165,15 @@ class BaseRedis {
         }
     }
 
+    //Remove all keys from all databases.
+    public function flushAll() {
+        self::$redis->flushAll();
+    }
 
+    //Remove all keys from current database
+    public function flushDB() {
+        self::$redis->flushDB();
+    }
 
 
 }
