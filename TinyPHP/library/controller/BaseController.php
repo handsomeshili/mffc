@@ -23,24 +23,27 @@ class BaseController {
      * Method loadServiceByName()
      * 根据路径加载一个类
      * @param string $service_name
-     * 
+     *
      */
     protected function loadServiceByName($service_name) {
-        $composer_autoload = require ROOT_PATH . '/vendor/autoload.php';
+        // $composer_autoload = require ROOT_PATH . '/vendor/autoload.php';
 
         $file = APPLICATION_PATH . '/services/' . $service_name . '.php';
-        if (!file_exists($file)) {
-            throw Exception('aquired file not exitsts');
-        }
-        $composer_autoload->add('files', $file);
+        require $file;
+        // if (!file_exists($file)) {
+        //     throw Exception('aquired file not exitsts');
+        // }
+        // $composer_autoload->add("System\\Serve", $file);
     }
 
 
 
     protected function loadModelByName($model_name) {
         //添加app/modules里面的更多模块
-        $composer_autoload = require ROOT_PATH . '/vendor/autoload.php';
-        var_dump($composer_autoload->add("files", APPLICATION_PATH . '/models/' . $model_name . '.php'));
+        $model_name = APPLICATION_PATH . '/models/' . $model_name . '.php';
+        require $model_file;
+        // $composer_autoload = require ROOT_PATH . '/vendor/autoload.php';
+        // var_dump($composer_autoload->add("files", APPLICATION_PATH . '/models/' . $model_name . '.php'));
     }
 
     public static function setModule($module) {
@@ -73,7 +76,7 @@ class BaseController {
      *
      * @param string $url ---要定向的路径
      * @return 失败返回FALSE
-     * 
+     *
      */
     public function redirect($request, $param = array()) {
         // $url = HOST_NAME . '/' . $request;

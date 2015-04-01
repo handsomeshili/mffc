@@ -24,12 +24,16 @@ class Session {
 
     public function __construct() {}
 
-    public function init() {}
+    public function init() {
+        //do something
+    }
 
     public function index() {}
 
     //
-    public function set($name, $value) {}
+    public function set($name, $value) {
+        
+    }
 
     //
     public function get($name) {}

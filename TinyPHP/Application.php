@@ -17,7 +17,7 @@ class Application {
      *
      * @author sily
      */
-     
+
 
 
     public function __construct() {
@@ -87,17 +87,18 @@ class Application {
     public static function initlize() {
 
         //添加app/modules里面的更多模块
-        $composer_autoload = require ROOT_PATH . '/vendor/autoload.php';
-
-        $con_ini = self::readConf();
-        $app_mo = $con_ini['application.modules'];
-        foreach ($app_mo as $mo_na) {
-            $module_name = $mo_na;
-            $composer_autoload->add("classmap", MODULES_PATH . '/' . $module_name . '/controllers');
-        }
-
+        // $composer_autoload = require ROOT_PATH . '/vendor/autoload.php';
+        //
+        // $con_ini = self::readConf();
+        // $app_mo = $con_ini['application.modules'];
+        // foreach ($app_mo as $mo_na) {
+        //     $module_name = $mo_na;
+        //     $composer_autoload->add("classmap", MODULES_PATH . '/' . $module_name . '/controllers');
+        // }
+        
         echo '<br />' . 'initlized' . '<br/>';
     }
+
 
 
     /**

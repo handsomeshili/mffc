@@ -5,6 +5,8 @@
  *
  */
 
+use System\Serve;
+
 class HomeController extends BaseController {
 
     public function init() {
@@ -28,11 +30,11 @@ class HomeController extends BaseController {
 
     public function home() {
         $this->init();
-        // $service = new UserService();
-        // $service->index();die;
+        $service = new UserService();
+        $service->index();
         // echo 'Homecontroller initlized success!';
         $article = Article::get();
-        $all = Article::all();
+        // $all = Article::all();
         // var_dump($all);
         $this->view = $this->getView('home')->with('article',$article);
         //require 载入外部文件，相当于在当前脚本require此行插入外部文件的所有代码.
