@@ -1,12 +1,12 @@
 <?php
-/** 
+/**
  * class Application
  * 全局配置，框架运行初始类，在public/index.php里面实例化这个类，然后这个类在initlize()函数里面做最基本的框架初始化操作
  *
  * @author sily
  */
 
-use Illuminate\Database\Capsule\Manager as Capsule; 
+use Illuminate\Database\Capsule\Manager as Capsule;
 
 
 class Application {
@@ -14,16 +14,17 @@ class Application {
     /**
      * Method __construct()
      * 构造函数
-     * 
+     *
      * @author sily
      */
-
-    
+     
 
 
     public function __construct() {
+
+
         //codes.......
-        
+
         //import autoload file
         require '../vendor/autoload.php';
 
@@ -31,7 +32,7 @@ class Application {
         /**
          * Eloqent ROM 包支持
          * Eloqent ROM  git adress: https://github.com/illuminate/database
-         * 
+         *
          */
         $capsule = new Capsule;
 
@@ -42,9 +43,9 @@ class Application {
 
 
 
-        /** 
+        /**
          * whoops 错误提示包支持
-         * 
+         *
          */
         $whoops = new \Whoops\Run;
         $whoops->pushHandler(new \Whoops\Handler\PrettyPageHandler);
@@ -53,7 +54,7 @@ class Application {
 
         /**
          * 用户自定义配置文件
-         * 
+         *
          */
         require CONFIG_PATH . "/bootstrap.php";
 
@@ -105,7 +106,7 @@ class Application {
      * @param string $module
      * @param string $controller
      * @param string $action
-     * @param array $param 
+     * @param array $param
      *
      * @author sily
      */
@@ -118,7 +119,7 @@ class Application {
         echo 'module: ' . $module . ' controller: ' . $controller . ' action: ' . $action . '<br />';
         echo 'params : ';
         var_dump($param);
-        echo '<br />route dispatche from here<br />'; 
+        echo '<br />route dispatche from here<br />';
 
         // BaseController::$_module = $module;
         BaseController::setModule($module);
