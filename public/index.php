@@ -16,7 +16,7 @@ define('CONFIG_PATH', ROOT_PATH . '/config');
 
 require '../TinyPHP/Application.php';
 $app = new Application();
-$app->initlize();
+$app->run();
 
 
 ?>

@@ -7,11 +7,12 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'Article' => $baseDir . '/app/models/Article.php',
-    'BaseController' => $baseDir . '/TinyPHP/library/controller/BaseController.php',
-    'BaseModel' => $baseDir . '/TinyPHP/library/model/BaseModel.php',
-    'BaseRedis' => $baseDir . '/TinyPHP/service/BaseRedis.php',
+    'BaseController' => $baseDir . '/TinyPHP/library/Base/BaseController.php',
+    'BaseModel' => $baseDir . '/TinyPHP/library/Base/BaseModel.php',
+    'BaseRedis' => $baseDir . '/TinyPHP/library/Base/BaseRedis.php',
     'BrandController' => $baseDir . '/app/modules/Brand/controllers/BrandController.php',
     'HomeController' => $baseDir . '/app/controllers/HomeController.php',
+    'Session' => $baseDir . '/TinyPHP/library/Base/Session.php',
     'UserController' => $baseDir . '/app/modules/User/controllers/UserController.php',
     'Validator' => $baseDir . '/TinyPHP/service/Validator.php',
     'View' => $baseDir . '/TinyPHP/service/View.php',

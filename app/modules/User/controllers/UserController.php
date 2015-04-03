@@ -14,6 +14,7 @@ class UserController extends BaseController {
      */
     public function index() {
         $this->view = $this->getView('User')->with('user','sily');
+
     }
 }
 

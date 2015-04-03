@@ -93,8 +93,6 @@ function is_today($time){
  * Method  underline_to_camel
  * 下划线转驼峰
  *
- * @author yangyang3
- *
  * @param string $string
  * @param bool   $is_ignore_uppercase
  *
@@ -112,8 +110,6 @@ function underline_to_camel($string, $is_ignore_uppercase = false) {
  * Method  camel_to_underline
  * 驼峰转下划线
  *
- * @author yangyang3
- *
  * @param $string
  *
  * @return string
@@ -128,7 +124,6 @@ function camel_to_underline($string) {
  * Method  get_client_ip
  * 获取客户端IP
  *
- * @author yangyang3
  * @return bool|string
  */
 function get_client_ip() {
@@ -142,7 +137,7 @@ function get_client_ip() {
         return $_SERVER['REMOTE_ADDR'];
     }
 
-    //验证HTTP头中是否有HTTP_X_FORWARDED_FOR
+    //验证HTTP头中是否有HTTP_X_FORWARDED_FOR   参考http://segmentfault.com/q/1010000000686700
     if (!isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
         return $_SERVER['REMOTE_ADDR'];
     }
@@ -160,12 +155,36 @@ function get_client_ip() {
         $client_ip = substr($_SERVER['HTTP_X_FORWARDED_FOR'], $position + 2);
     }
 
+
+
     //验证$client_ip是否为合法IP
     if (filter_var($client_ip, FILTER_VALIDATE_IP)) {
         return $client_ip;
     } else {
         return false;
     }
+}
+
+
+/**
+* 获取安全的参数，在向数据库中插入和更新字符串数据时需要
+* 通过这个方法过滤插入内容
+*/
+function getSafeString($value, $is_html=false) {
+    $str = array(">", "<", "'", "\"", "\\");
+    $value = trim($value);
+    if ($is_html == false) {
+        $value = strip_tags($value);
+    } else {
+        $value = preg_replace("/<(script.*?)>(.*?)<(\/script.*?)>/si","",$value) ;
+        $value = preg_replace("/<(iframe.*?)(.*?)<(\/iframe.*?)>/si","",$value);
+        $value = preg_replace("/<(iframe.*?)(.*?)\/>/si","",$value);
+    }
+    $value = trim($value);
+    $value = addslashes($value);
+    $value = str_replace($str, '', $value);
+        
+    return $value;
 }
 
 ?>

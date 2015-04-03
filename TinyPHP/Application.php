@@ -84,7 +84,14 @@ class Application {
      *
      * @author sily
      */
-    public static function initlize() {
+    public static function run() {
+
+        $m = Router::getModule();
+        $c = Router::getController();
+        $a = Router::getAction();
+        $p = Router::getParam();
+        self::RouteDispatch($m, $c, $a, $p);
+
 
         //添加app/modules里面的更多模块
         // $composer_autoload = require ROOT_PATH . '/vendor/autoload.php';
@@ -95,8 +102,6 @@ class Application {
         //     $module_name = $mo_na;
         //     $composer_autoload->add("classmap", MODULES_PATH . '/' . $module_name . '/controllers');
         // }
-        
-        echo '<br />' . 'initlized' . '<br/>';
     }
 
 
