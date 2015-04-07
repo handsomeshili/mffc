@@ -20,21 +20,25 @@ class Router {
     public function __construct(){}
 
     public static function init($route) {
-
         $request_len = count($route);
 
         $param = array();
-        if ($request_len >= 3) {    
+        if ($request_len >= 3) {
             //URL中获取module controller action  param
             $module = $route[0];
             $controller = $route[1];
             $action = $route[2];
             
-            //获取action后面的参数,例如: /Index/Home/home/d/1 => d=1
+            //获取action后面的参数,例如: /Index/Home/home?d=1
             $param = array();
             for ($i = 3; $i < $request_len - 1; $i++) {
                 $param[$route[$i]] = $route[$i + 1];
             }
+
+            if (empty($param) && $_GET !== null) {
+                $param = $_GET;
+            }
+            
         } elseif ($request_len === 2) {
             //使用默认的模块
             $module = 'Index';

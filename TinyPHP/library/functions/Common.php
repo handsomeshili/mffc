@@ -21,6 +21,49 @@ function dump() {
     echo '<br />';
 }
 
+/**
+ * method debug
+ * 自定义调试文件
+ * 
+ */
+function debug() {
+    $arg_list = func_get_args();
+
+    $called = debug_backtrace();
+
+    echo '</pre>' . PHP_EOL;
+
+    foreach ($arg_list as $value) {
+        echo '<strong>' . $called[0]['file'] . ' (line ' . $called[0]['line'] . ')</strong> ' . PHP_EOL;
+
+        if (is_array($value)) {
+            print_r($value);
+        } else {
+            var_dump($value);
+        }
+
+        echo PHP_EOL;
+    }
+    echo '</pre>' . PHP_EOL;
+    exit();
+}
+
+/**
+ * Method getConfByName
+ * 根据配置项名称返回配置项的值
+ * @param string $name
+ * @return string $conf_value | false
+ */
+function getConfByName($name) {
+    $config = parse_ini_file(CONFIG_PATH . '/application.ini');
+    $conf_value = $config[$name];
+    if ($conf_value) {
+        return $conf_value;
+    } else {
+        return false;
+    }
+    
+}
 
 function is_url($variable = '') {
     $pattern = '/^(?:https?):\/\/(?:[a-z0-9]+\-?[a-z0-9]+\.)*([a-z0-9]+(?:\-?[a-z0-9])*\.[a-z]{2,})(?:\/?.*)$/is';

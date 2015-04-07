@@ -11,11 +11,10 @@ use NoahBuscher\Macaw\Macaw;
 
 
 Macaw::get('/(:all)', function($request_name) {
-
     //从uri中获取module、controller、action
     $request_name = trim($request_name);
     $route = explode('/', $request_name);
-
+    // $route['param'] = $_GET;
     require '../TinyPHP/Router.php';
     Router::init($route);
 
