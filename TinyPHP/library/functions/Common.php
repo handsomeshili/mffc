@@ -10,7 +10,7 @@
 
 function dump() {
     $argument = func_get_args();
-
+    echo '<pre>';
     foreach($argument as $key => $value) {
         if (is_array($value)) {
             print_r($value);
@@ -18,7 +18,7 @@ function dump() {
             echo $value;
         }
     }
-    echo '<br />';
+    echo '</pre><br />';
 }
 
 /**
@@ -54,16 +54,16 @@ function debug() {
  * @param string $name
  * @return string $conf_value | false
  */
-function getConfByName($name) {
-    $config = parse_ini_file(CONFIG_PATH . '/application.ini');
-    $conf_value = $config[$name];
-    if ($conf_value) {
-        return $conf_value;
+function getConfByName($index, $name) {
+    $config = parse_ini_file(CONFIG_PATH . '/application.ini', true);
+    if ($config[$index][$name]) {
+        return $config[$index][$name];
     } else {
         return false;
     }
     
 }
+
 
 function is_url($variable = '') {
     $pattern = '/^(?:https?):\/\/(?:[a-z0-9]+\-?[a-z0-9]+\.)*([a-z0-9]+(?:\-?[a-z0-9])*\.[a-z]{2,})(?:\/?.*)$/is';

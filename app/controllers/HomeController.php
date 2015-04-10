@@ -41,9 +41,22 @@ class HomeController extends BaseController {
         // require dirname(__FILE__) . '/../views/home.html';
     }
 
+    public function writeLog() {
+        $logger_path = APPLICATION_PATH . 'logs/alert.log';
+        $logger = new Logs($logger_path);
+        $logger->write('error', time(), 'sb', 'delete', 'something');
+        exit;
+    }
+    public function readLog(){
+        $logger_path = APPLICATION_PATH . 'logs/alert.log';
+        $logger = new Logs($logger_path);
+        // $logger->write('error', time(), 'sb', 'delete', 'something');
+        $content = $logger->read('', "2015-04-10 18:29:32");
 
+        dump($content);
 
-
+        exit;
+    }
 }
 
 

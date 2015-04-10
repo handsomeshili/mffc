@@ -13,7 +13,7 @@ class UserController extends BaseController {
      * @author sily
      */
     public function index() {
-        $con = getConfByName('config_name');
+        $con = getConfByName('database', 'host');
         var_dump($con);
         $this->view = $this->getView('User')->with('user','sily');
 

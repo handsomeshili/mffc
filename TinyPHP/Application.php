@@ -27,7 +27,8 @@ class Application {
 
         //import autoload file
         require '../vendor/autoload.php';
-
+        //加载公共函数库文件
+        require "library/functions/Common.php";
 
         /**
          * Eloqent ROM 包支持
@@ -45,12 +46,15 @@ class Application {
 
         /**
          * whoops 错误提示包支持
-         *
+         * 根据配置项application.throwException配置选择是否开启
          */
-        $whoops = new \Whoops\Run;
-        $whoops->pushHandler(new \Whoops\Handler\PrettyPageHandler);
+         
+        if (getConfByName('product', 'application.throwException')) {
+            $whoops = new \Whoops\Run;
+            $whoops->pushHandler(new \Whoops\Handler\PrettyPageHandler);
+            $whoops->register();
+        }
 
-        $whoops->register();
 
         /**
          * 用户自定义配置文件
@@ -58,8 +62,7 @@ class Application {
          */
         require CONFIG_PATH . "/bootstrap.php";
 
-        //加载公共函数库文件
-        require "library/functions/Common.php";
+
 
 
         //import router config file

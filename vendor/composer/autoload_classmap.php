@@ -12,6 +12,7 @@ return array(
     'BaseRedis' => $baseDir . '/TinyPHP/library/Base/BaseRedis.php',
     'BrandController' => $baseDir . '/app/modules/Brand/controllers/BrandController.php',
     'HomeController' => $baseDir . '/app/controllers/HomeController.php',
+    'Logs' => $baseDir . '/TinyPHP/service/Logs.php',
     'Session' => $baseDir . '/TinyPHP/library/Base/Session.php',
     'UserController' => $baseDir . '/app/modules/User/controllers/UserController.php',
     'Validator' => $baseDir . '/TinyPHP/service/Validator.php',
