@@ -21,7 +21,7 @@ class Logs {
 
     /**
      * method write
-     * 中读取日志内容
+     * 写进日志文件
      * @param string $type              指定日志类型，alert、error、access等
      * @param string $timestamp        日期
      * @return string $log_content_str
@@ -52,7 +52,7 @@ class Logs {
 
     /**
      * method read
-     * 把时间写进日志文件
+     * 读取日志中内容
      * @param string $type              指定日志类型，alert、error、access等
      * @param string $timestamp        日期
      * @param string $role              操作者

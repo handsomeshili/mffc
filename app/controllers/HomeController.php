@@ -16,17 +16,21 @@ class HomeController extends BaseController {
     }
 
     public function index() {
-        $this->init();
-        $redis = BaseRedis::getInstance();
-        $redis->set('name', 'append2');
-        dump($redis->get('name'));
-        $redis->set('num', 12);
-        $redis->incr('num');
-        dump($redis->get('num'));
-        $module_name = $this->getModule();
-        var_dump($module_name);die;
-        $this->redirect('home');
+        $this->view = $this->getView('index')->with('content', 'hello Tinyphp');
     }
+
+    // public function index() {
+    //     $this->init();
+    //     $redis = BaseRedis::getInstance();
+    //     $redis->set('name', 'append2');
+    //     dump($redis->get('name'));
+    //     $redis->set('num', 12);
+    //     $redis->incr('num');
+    //     dump($redis->get('num'));
+    //     $module_name = $this->getModule();
+    //     var_dump($module_name);die;
+    //     $this->redirect('home');
+    // }
 
     public function home() {
         $this->init();
