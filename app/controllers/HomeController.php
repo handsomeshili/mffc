@@ -16,6 +16,7 @@ class HomeController extends BaseController {
     }
 
     public function index() {
+        dump(getConfByName('database','host'));
         $this->view = $this->getView('index')->with('content', 'hello Tinyphp');
     }
 

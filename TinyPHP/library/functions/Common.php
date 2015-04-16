@@ -52,16 +52,15 @@ function debug() {
  * Method getConfByName
  * 根据配置项名称返回配置项的值
  * @param string $name
- * @return string $conf_value | false
+ * @return string $conf_value | 'no suck config option'
  */
 function getConfByName($index, $name) {
-    $config = parse_ini_file(CONFIG_PATH . '/application.ini', true);
-    if ($config[$index][$name]) {
+    $config = Application::getSysConfig();
+    if (isset($config[$index][$name])) {
         return $config[$index][$name];
     } else {
-        return false;
+        return 'no suck config option';
     }
-    
 }
 
 

@@ -11,44 +11,37 @@ use Illuminate\Database\Capsule\Manager as Capsule;
 
 class Application {
 
+    protected static $_config;
+
     /**
      * Method __construct()
      * 构造函数
      *
      * @author sily
      */
-
-
-
     public function __construct() {
-
-
-        //codes.......
-
         //import autoload file
         require '../vendor/autoload.php';
+
+        //读取配置文件，并加载到框架中
+        self::$_config = $this->initConf();
+
         //加载公共函数库文件
         require "library/functions/Common.php";
 
         /**
          * Eloqent ROM 包支持
          * Eloqent ROM  git adress: https://github.com/illuminate/database
-         *
          */
         $capsule = new Capsule;
-
-        //读取配置文件
         $capsule->addConnection(require '../config/database.php');
         //Setup the Eloquent ORM... (optional; unless you've used setEventDispatcher())
         $capsule->bootEloquent();
-
-
 
         /**
          * whoops 错误提示包支持
          * 根据配置项application.throwException配置选择是否开启
          */
-         
         if (getConfByName('product', 'application.throwException')) {
             $whoops = new \Whoops\Run;
             $whoops->pushHandler(new \Whoops\Handler\PrettyPageHandler);
@@ -56,14 +49,8 @@ class Application {
         }
 
 
-        /**
-         * 用户自定义配置文件
-         *
-         */
+        //用户自定义配置文件
         require CONFIG_PATH . "/bootstrap.php";
-
-
-
 
         //import router config file
         require CONFIG_PATH . '/routes.php';
@@ -71,14 +58,39 @@ class Application {
     }
 
     /**
+     * @undone
      * Method readConf()
-     * 读取配置文件
-     *
+     * 读取配置文件 并组合成一个方便查询的新数组
+     * @return array $new_config
      */
-    protected static function readConf() {
-        $config = parse_ini_file(CONFIG_PATH . '/application.ini');
-        return $config;
+    protected static function initConf() {
+        $config = parse_ini_file(CONFIG_PATH . '/application.ini',true, INI_SCANNER_RAW);
+        $new_config = array();
+        foreach ($config as $ck => $cv) {
+            switch ($ck) {
+                case 'product':
+                    foreach ($cv as $pk => $pv) {
+                        $point_pos = strpos($pk, '.');
+                        $conf_name = substr($pk, $point_pos + 1);
+                        $new_config['application'][$conf_name] = $pv;
+                    }
+                    break;
+                case 'database':
+                    $new_config['database'] = $config['database'];
+                    break;
+                default:
+                    # code...
+                    $new_config = array();
+                    break;
+            }
+        }
+        return $new_config;
     }
+
+    public static function getSysConfig() {
+        return self::$_config;
+    }
+
 
 
     /**
