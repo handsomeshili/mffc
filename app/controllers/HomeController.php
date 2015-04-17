@@ -66,4 +66,3 @@ class HomeController extends BaseController {
 
 
 
-?>

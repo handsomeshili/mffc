@@ -7,7 +7,6 @@
  * 重写var_dump()
  *
  */
-
 function dump() {
     $argument = func_get_args();
     echo '<pre>';
@@ -52,14 +51,14 @@ function debug() {
  * Method getConfByName
  * 根据配置项名称返回配置项的值
  * @param string $name
- * @return string $conf_value | 'no suck config option'
+ * @return string $conf_value | false
  */
 function getConfByName($index, $name) {
     $config = Application::getSysConfig();
     if (isset($config[$index][$name])) {
         return $config[$index][$name];
     } else {
-        return 'no suck config option';
+        return false;
     }
 }
 
@@ -229,4 +228,3 @@ function getSafeString($value, $is_html=false) {
     return $value;
 }
 
-?>

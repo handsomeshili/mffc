@@ -34,7 +34,7 @@ class Application {
          * Eloqent ROM  git adress: https://github.com/illuminate/database
          */
         $capsule = new Capsule;
-        $capsule->addConnection(require '../config/database.php');
+        $capsule->addConnection(require CONFIG_PATH . '/database.php');
         //Setup the Eloquent ORM... (optional; unless you've used setEventDispatcher())
         $capsule->bootEloquent();
 
@@ -42,7 +42,7 @@ class Application {
          * whoops 错误提示包支持
          * 根据配置项application.throwException配置选择是否开启
          */
-        if (getConfByName('product', 'application.throwException')) {
+        if (self::$_config['application']['throwException']) {
             $whoops = new \Whoops\Run;
             $whoops->pushHandler(new \Whoops\Handler\PrettyPageHandler);
             $whoops->register();
@@ -139,7 +139,7 @@ class Application {
 
         echo 'module: ' . $module . ' controller: ' . $controller . ' action: ' . $action . '<br />';
         echo 'params : ';
-        var_dump($param);
+        dump($param);
         echo '<br />route dispatche from here<br />';
 
         // BaseController::$_module = $module;
@@ -156,4 +156,3 @@ class Application {
 
 
 
-?>

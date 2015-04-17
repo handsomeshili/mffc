@@ -12,7 +12,7 @@ define('APPLICATION_PATH', ROOT_PATH . '/app/');
 define('MODULES_PATH', APPLICATION_PATH . '/modules');
 
 //定义项目自定义配置文件路径
-define('CONFIG_PATH', ROOT_PATH . '/config');
+define('CONFIG_PATH', APPLICATION_PATH . '/config');
 
 define('HOST_NAME', '127.0.0.1:3000');
 
