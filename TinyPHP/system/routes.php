@@ -15,7 +15,17 @@ Macaw::get('/(:all)', function($request_name) {
     $request_name = trim($request_name);
     $route = explode('/', $request_name);
     // $route['param'] = $_GET;
-    require '../TinyPHP/Router.php';
+    require 'Router.php';
+    Router::init($route);
+
+});
+
+Macaw::post('/(:all)', function($request_name) {
+    //从uri中获取module、controller、action
+    $request_name = trim($request_name);
+    $route = explode('/', $request_name);
+    // $route['param'] = $_GET;
+    require 'Router.php';
     Router::init($route);
 
 });

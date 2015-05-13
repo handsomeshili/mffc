@@ -33,11 +33,14 @@ class Application {
          * Eloqent ROM 包支持
          * Eloqent ROM  git adress: https://github.com/illuminate/database
          */
-        $capsule = new Capsule;
-        $capsule->addConnection(require CONFIG_PATH . '/database.php');
-        //Setup the Eloquent ORM... (optional; unless you've used setEventDispatcher())
-        $capsule->bootEloquent();
+        if (file_exists(CONFIG_PATH . '/database.php')) {
+            $capsule = new Capsule;
+            $capsule->addConnection(require CONFIG_PATH . '/database.php');
+            //Setup the Eloquent ORM... (optional; unless you've used setEventDispatcher())
+            $capsule->bootEloquent();
+        }
 
+        
         /**
          * whoops 错误提示包支持
          * 根据配置项application.throwException配置选择是否开启
@@ -53,7 +56,7 @@ class Application {
         require CONFIG_PATH . "/bootstrap.php";
 
         //import router config file
-        require CONFIG_PATH . '/routes.php';
+        require 'system/routes.php';
 
     }
 
